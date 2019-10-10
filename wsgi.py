@@ -116,8 +116,8 @@ async def init_kafka_resources() -> None:
 
     # Start consuming messages
     try:
-        #async for msg in CONSUMER:
-        #logger.debug('Received message: %s', str(msg))
+        async for msg in CONSUMER:
+            logger.debug('Received message: %s', str(msg))
         MAIN_LOOP.create_task(process_message(CONSUMER))
 
     finally:
@@ -126,8 +126,7 @@ async def init_kafka_resources() -> None:
 
 
 async def process_message(message: ConsumerRecord) -> bool:
-    #msg_id = f'#{message.partition}_{message.offset}'
-    msg_id = f'#{message.offset}'
+    msg_id = f'#{message.partition}_{message.offset}'
     logger.debug("Receiving message: %s", message)
 
     try:
