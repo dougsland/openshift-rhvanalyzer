@@ -126,7 +126,8 @@ async def init_kafka_resources() -> None:
 
 
 async def process_message(message: ConsumerRecord) -> bool:
-    msg_id = f'#{message.partition}_{message.offset}'
+    #msg_id = f'#{message.partition}_{message.offset}'
+    msg_id = f'#{message.offset}'
     logger.debug("Receiving message: %s", message)
 
     try:
